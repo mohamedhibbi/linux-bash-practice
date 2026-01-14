@@ -1,12 +1,20 @@
 # Linux Bash Practice
 
-This repository contains Bash scripts created while learning Linux system administration
-and preparing for RHCSA.
+This repository contains Bash scripts for learning and practicing Linux system administration.  
+All scripts are organized into folders based on their purpose.
 
-The scripts focus on:
-- Bash fundamentals
-- System monitoring
-- Service management
-- Automation basics
+---
 
-Learning-focused repository.
+## Repository Structure
+linux-bash-practice/
+│
+├─ monitoring/ # Scripts for monitoring system resources
+│ └─ 
+├─ networking/ # Scripts for networking tasks
+│ └─ 
+├─ utilities/ # Utility scripts for user management, cleanup, etc.
+│ └─ make-user.sh
+├─ docker/
+├─ README.md
+└─ LICENSE (optional)
+
