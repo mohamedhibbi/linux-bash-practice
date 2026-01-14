@@ -16,5 +16,5 @@ linux-bash-practice/
 │ └─ make-user.sh
 ├─ docker/
 ├─ README.md
-└─ LICENSE (optional)
+└─ LICENSE 
 
