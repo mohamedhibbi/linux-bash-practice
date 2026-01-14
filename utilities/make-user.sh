@@ -1,1 +1,45 @@
 #!/bin/bash
+#makeusr [-u uid] [-g gid] [-i info] [-h homedir] [-s shell] username 
+	usage(){
+		echo 'usage: makeusr [-u uid] [-g gid] [-i info] [-h homedir]' 
+                echo '[-s shell] username'
+		exit 1
+	       } 
+        
+       helpmessage(){
+	       	echo "makeusr is a script ... "
+	        echo "blablabla"
+                    } 
+	
+	    while getopts "u:g:i:h:s:" opt; do 
+		    case $opt in 
+			    u ) uid=$OPTARG ;;
+			    g ) gid=$OPTARG ;;
+			    i ) info=$OPTARG ;;
+			    h ) home=$OPTARG ;;
+			    s ) shell=$OPTARG ;;
+			    ? ) helpmessage ;; 
+			    * ) usage ;; 
+	            esac 
+
+		    shift $(($OPTIND -1)) 
+	    done 
+
+	   if [ -z "$1" ]; then 
+		  usage
+           fi 
+  	 
+           if [ -n "$2" ]; then 
+		   usage
+	   fi
+
+	   if [ -z "$uid" ]; then 
+		   uid=500
+		   while cut -d :  -f3 /etc/passwd  | grep -x $uid 
+		   do
+			   uid=$(( uid + 1 )) > /dev/null
+	           done
+
+	   fi 
+
+	   
