@@ -5,18 +5,23 @@ All scripts are organized into folders based on their purpose.
 
 ---
 
-## Repository Structure
-linux-bash-practice/
-│
-├─ monitoring/ # Scripts for monitoring system resources
-│ └─ 
-├─ networking/ # Scripts for networking tasks
-│ └─ 
-├─ utilities/ # Utility scripts for user management, cleanup, etc.
-│ └─ make-user.sh
-├─ docker/
-├─ README.md
-├─ practice
-│  └─ 
-└─ LICENSE 
 
+## Repository Structure
+
+- **monitoring/**  
+  Scripts for monitoring CPU, RAM, disk, and system processes
+
+- **networking/**  
+  Scripts for network diagnostics and configuration
+
+- **utilities/**  
+  General-purpose scripts (user management, cleanup, services)
+
+- **practice/**  
+  Bash experiments and learning exercises
+
+- **docker/**  
+  Container-related labs and scripts
+
+- **README.md**
+-   Project overview and usage
