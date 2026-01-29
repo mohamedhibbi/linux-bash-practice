@@ -1,29 +1,38 @@
 #!/bin/bash
-# $1 is the first argument passed to the script 
-ACTION="$1"
-#check if the user provided an action 
-if [[ -z "$ACTION" ]]; then 
-	echo "Error: No Action Provided" 
-	echo "Usage: $0 [start|stop|restart]"
-	exit 1
-fi 
 
-case "$ACTION" in 
-	start)
-		echo "Starting the Service..."
-		# Place Your systemctl start command here
-		;;
-	stop)
-		echo "Stopping the Service..."
-		# place Your systemctl stop command here 
-		;;
-	restart)
-		echo "Restarting the Service..."
-		# Place your systemctl restart command here 
-		;;
-	*)
-		echo "Error: Unknown action '$ACTION'."
-		echo "Usage: $0 [start|stop|restart]"
-		exit 1
-		;;
-esac 
+ACTION="$1"
+SERVICE="$2"
+
+if [[ -z "$ACTION" || -z "$SERVICE" ]]; then
+    echo "Usage: $0 [start|stop|restart|status] <service>"
+    exit 1
+fi
+
+# Require root
+if [[ $EUID -ne 0 ]]; then
+    echo "Please run as root."
+    exit 1
+fi
+
+case "$ACTION" in
+    start)
+        echo "Starting $SERVICE..."
+        systemctl start "$SERVICE"
+        ;;
+    stop)
+        echo "Stopping $SERVICE..."
+        systemctl stop "$SERVICE"
+        ;;
+    restart)
+        echo "Restarting $SERVICE..."
+        systemctl restart "$SERVICE"
+        ;;
+    status)
+        systemctl status "$SERVICE"
+        ;;
+    *)
+        echo "Unknown action: $ACTION"
+        echo "Usage: $0 [start|stop|restart|status] <service>"
+        exit 1
+        ;;
+esac
