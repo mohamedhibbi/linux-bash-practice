@@ -5,7 +5,6 @@
 # Usage: ./service.sh [start|stop|restart|status] <service>
 # Example: ./service.sh restart sshd
 ################################################################################
-
 # First argument is the action (start/stop/restart/status)
 ACTION="$1"
 # Second argument is the service name
