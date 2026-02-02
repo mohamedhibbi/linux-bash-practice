@@ -1,28 +1,39 @@
 #!/bin/bash
-LOG_DIR=/var/log/my-app
+
+# =====================================================
+# Script : Find the first corrupted log file
+# Purpose: Demonstrate how the "break" statement works
+# Author : Mohamed Hibbi
+# =====================================================
+
+LOG_DIR="/var/log/my-app"
 FOUND_FILE=""
 
-# Loop through all files ending with .log 
-for log_file in "$LOG_DIR"/*.log; do 
+# Loop through all .log files in the directory
+for log_file in "$LOG_DIR"/*.log; do
+    echo "🔍 Scanning file: $log_file"
 
-	echo "Scanning file: $log_file"
-# -q (quiet) option makes grep silent; we only care about the exit code 
-  if grep -qi "error" "$log_file"; then 
-	echo "found error in $log_file"
-	FOUND_FILE="$log_file"
+    # Search for the word "error" (case-insensitive)
+    # -q : quiet mode (no output, only exit status)
+    # -i : ignore case
+    if grep -qi "error" "$log_file"; then
+        echo "❌ Error found in: $log_file"
 
-# Now we want to stop scanning because we find the first corrupted file 
+        # Save the first corrupted file
+        FOUND_FILE="$log_file"
+
+        # 🚨 break stops the loop immediately
+        # No more files will be scanned after this point
         break
-  fi
+    fi
 done
 
-# the script continues here the break 
+# Code execution continues here AFTER the break
+if [[ -n "$FOUND_FILE" ]]; then
+    echo "✅ First corrupted file: $FOUND_FILE"
+    exit 1
+else
+    echo "🎉 No corrupted files found."
+    exit 0
+fi
 
-  if [[ -n "$FOUND_FILE" ]]; then
-# -n options is for  STRING True if string is not empty. 
-	  echo "the first corrupted file is: $FOUND_FILE"
-  else 
-	  echo "No corrupted files found." 
-  fi 
-
-	
