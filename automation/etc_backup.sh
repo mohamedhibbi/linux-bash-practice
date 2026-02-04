@@ -1,7 +1,8 @@
 #!/bin/bash
 
 # -------------------------------
-# Bash Ninja: /etc Backup Script
+# Purpose: /etc Backup Script
+# Author: Mohamed Hibbi
 # -------------------------------
 
 # 1️⃣ Check if running as root
